@@ -1,113 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table</title>
-    <style>
-
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    }
-
-    form {
-    max-width: 400px;
-    margin: 10px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    label {
-    font-weight: bold;
-    }
-
-    option {
-    font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    }
-
-    input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-   }
-
-</style>
+    <link rel="stylesheet" href="style.css">
+    <title>form</title>
 </head>
 
 <body>
-<form action="">
-        <label for="fname">Nome:</label>
+    <form id="bhaskara">
+        <h1>Calculadora de bhaskara</h1>
+        <label for="coeficienteA">Coeficiente A:</label>
+        <input type="number" id="coeficienteA" required>
         <br>
-        <input type="text" id="fname" name="fname">
+        <label for="coeficienteB">Coeficiente B:</label>
+        <input type="number" id="coeficienteB" required>
         <br>
-        <label for="lname">Sobrenome:</label>
+        <label for="coeficienteC">Coeficiente C:</label>
+        <input type="number" id="coeficienteC" required>
         <br>
-        <input type="text" id="lname" name="lname">
+        <div id="resultado">
+        </div>
+        <div id="resultado2">
+        </div>
         <br>
-        <label for="lname">Genero:</label>
-        <br>
-        <br>
-        <input type="radio" id="lname" name="lname"><label for="lname">Masculino</label>
+        <button type="button" onclick="Calcular();">Calcular</button>
+    </form>
 
-       <input type="radio" id="lname" name="lname"><label for="lname">Feminino</label>
+    <script>
+        function Calcular() {
+            const a = parseFloat(document.getElementById('coeficienteA').value);
+            const b = parseFloat(document.getElementById('coeficienteB').value);
+            const c = parseFloat(document.getElementById('coeficienteC').value);
 
-        <input type="radio" id="lname" name="lname"><label for="lname">Outro</label>
+            const delta = (b * b) - 4 * a * c;
 
-        <input type="radio" id="lname" name="lname"><label for="lname">HTML</label>
-        
-        <br>
-        <br>
-        <label for="lname">Numero:</label>
-        <br>
-        <input type="text" id="lname" name="lname">
-        <br>
-        <label for="lname">Endereço:</label>
-        <br>
-        <input type="text" id="lname" name="lname">
-        <br>
-        <label for="lname">Curso:</label>
-        <select type="text" id="lname" name="lname">
-            <option value="info">Info</option>
-            <option value="agro">Agro</option>
-            <option value="quimi">Quimi</option>
-        </select>    
-        <br>
-        <br>
-        <label for="lname">professor favorito:</label>
-        <br>
-        <input type="text" id="lname" name="lname">
-        <br>
-        <label for="lname">jogo favorito:</label>
-        <br>
-        <input type="text" id="lname" name="lname">
-        <br>
-        <label for="lname">cor favorita:</label>
-        <br>
-        <input type="text" id="lname" name="lname">
-        <br>
-        <label for="lname">aniversario:</label>
-        <br>
-        <input type="date" id="lname" name="lname">
-        <br>
-</form>
-    
+            if (delta < 0) {
+                document.getElementById('resultado').innerHTML = 'Não há raízes válidas.';
+            } 
+            else {
+                const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                document.getElementById('resultado').innerHTML = `x¹ = ${x1}`;
+                document.getElementById('resultado2').innerHTML = `x² = ${x2}`;
+            }
+        }
+    </script>
 </body>
+
 </html>
